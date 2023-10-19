@@ -25,3 +25,8 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
+## Definicion del proyecto
+
+En este proyecto desarrollaremos una aplicacion web enfocada a una tienda virtual que presta sus servicios de ecommers para la venta de articulos electronicos como accesorios, portatiles, auriculares, pc de escritorio, mouse, teclados y demas variedad de articulos tecnologicos. Esta aplicacion contara con sistema de autenticacion y registro de usuarios y demas funcionalidades que hacer comun a una tiena online.

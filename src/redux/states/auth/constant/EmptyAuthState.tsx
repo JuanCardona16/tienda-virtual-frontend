@@ -1,9 +1,10 @@
 export const EmptyAuthState = {
   user: {
-    uuid: "",
+    id: "",
     username: "",
     email: "",
     phone: "",
     password: ""
-  }
+  },
+  token: ""
 }

@@ -4,7 +4,7 @@ import { tiendaApi } from "../api/config";
 import { AxiosResponse } from "axios";
 
 export const singin = createAsyncThunk(
-  'auth/signup',
+  'auth/singin',
   async (user: CreateUserDto, trunkAPI) => {
     try {
       const response: AxiosResponse = await tiendaApi.post('/register', user);
@@ -15,3 +15,19 @@ export const singin = createAsyncThunk(
     }
   }
 );
+
+// http://localhost:8080/register
+
+export const singup = createAsyncThunk(
+  'auth/singup',
+  async (user: { email: string, password: string }, thunkAPI) => {
+    try {
+      const response: AxiosResponse = await tiendaApi.post('/login', user);
+      const { data } = response;
+      console.log(response)
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error); 
+    }
+  }
+)

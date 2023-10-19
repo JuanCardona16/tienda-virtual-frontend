@@ -1,11 +1,9 @@
-import './login.css';
-import { useState } from "react";
-import { useAppDispatch, userAppSelector } from "../../hooks";
-import { singup } from "../../services/auth.service";
-import { selectUserInfo } from "../../redux/states/auth/User.state";
-// import { useForm } from 'react-hook-form'
+import React, { useState } from "react"
+import { useAppDispatch } from "../../hooks";
+import { singin } from "../../services/auth.service";
 
-interface formDataLogin {
+interface formDataRegister {
+  username: string,
   email: string,
   password: string
 }
@@ -13,11 +11,9 @@ interface formDataLogin {
 const Register = () => {
 
   const dispatch = useAppDispatch();
-  const userInfo = userAppSelector(selectUserInfo);
 
-  // const { handleSubmit, register } = useForm<formDataLogin>();
-
-  const [formData, setFormData] = useState<formDataLogin>({
+  const [formData, setFormData] = useState<formDataRegister>({
+    username: "",
     email: "",
     password: ""
   });
@@ -28,17 +24,24 @@ const Register = () => {
 
   const onSubmitForm = (event: React.FormEvent): void => {
     event.preventDefault();
-    dispatch(singup({
+    dispatch(singin({
+      username: formData.username,
       email: formData.email,
       password: formData.password
     }))
-    console.log(formData)
   }
 
   return (
-    <div className='login' id='login'>
+    <div className="login">
       <form onSubmit={onSubmitForm}>
-        <h2>Login</h2>
+        <h2>Register</h2>
+        <label htmlFor="username">UserName</label>
+        <input 
+          type="text" 
+          name="username" 
+          id="username" 
+          onChange={onChange}
+          />
         <br />
         <label htmlFor="email">Email</label>
         <input 
@@ -58,19 +61,8 @@ const Register = () => {
           <button>Enviar</button>
       </form>
       <br />
-      <div>
-        <h2>User Info Loget</h2>
-        <p>username: {userInfo.user.username}</p>
-        <p>email: {userInfo.user.email}</p>
-        <p>id: {userInfo.user.id}</p>
-        <p>Token acces: {userInfo.token}</p>
-      </div>
-      <br />
-      <img src="https://i.imgur.com/sufNDTS.png" alt="imagen" />
     </div>
   )
 }
-
-// PaulaG@2023#11
 
 export default Register

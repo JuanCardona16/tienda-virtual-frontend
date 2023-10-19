@@ -1,9 +1,9 @@
 export interface User {
-  uuid: string;
+  id: string;
   username: string;
   email: string
   password: string;
 }
 
-export type CreateUserDto = Omit<User, "uuid">;
+export type CreateUserDto = Omit<User, "id">;
 export type UpdateUserDto = Partial<User>;
