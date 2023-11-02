@@ -1,7 +1,17 @@
-import React, { useState } from "react"
+import styled from './register.module.css'
 import { useAppDispatch } from "../../hooks";
 import { singin } from "../../services/auth.service";
+import { Link, useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { PublicRoutes } from "../../models/routes";
+import imagenRegister from '../../assets/365cons-124.svg'
+import { InputForm } from '../../styled-components/input';
 
+type formData = {
+  username: string,
+  email: string,
+  password: string
+}
 interface formDataRegister {
   username: string,
   email: string,
@@ -11,56 +21,53 @@ interface formDataRegister {
 const Register = () => {
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { handleSubmit, register, formState: { errors } } = useForm<formDataRegister>();
 
-  const [formData, setFormData] = useState<formDataRegister>({
-    username: "",
-    email: "",
-    password: ""
-  });
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
-  }
-
-  const onSubmitForm = (event: React.FormEvent): void => {
-    event.preventDefault();
-    dispatch(singin({
-      username: formData.username,
-      email: formData.email,
-      password: formData.password
-    }))
+  const onSubmitForm: SubmitHandler<formData> = (data) => {
+    dispatch(singin(data))
+    navigate(`/${PublicRoutes.LOGIN}`, { replace: true })
   }
 
   return (
-    <div className="login">
-      <form onSubmit={onSubmitForm}>
-        <h2>Register</h2>
-        <label htmlFor="username">UserName</label>
-        <input 
-          type="text" 
-          name="username" 
-          id="username" 
-          onChange={onChange}
+    <div className={styled.register}>
+      <form className={styled.form} onSubmit={handleSubmit(onSubmitForm)}>
+        <img className={styled.imageForm} src={imagenRegister} alt="imagen de castor para el login" width={90} />
+        <h2 className={styled.formTitle}>Create accout</h2>
+        <label htmlFor="username">Name
+          <InputForm type="username" placeholder='your user name!' {...register('username', { required: true })} />
+          { errors.username 
+              ? (<span className={styled.error}>Este campo es requerido!</span>)
+              : null
+          }
+        </label>
+        <label htmlFor="email">Email
+          <InputForm type="email" placeholder='example@gmail.com' {...register('email', { required: true })} />
+          { errors.email 
+              ? (<span className={styled.error}>Este campo es requerido!</span>)
+              : null
+          }
+        </label>
+        <label htmlFor="email">Password
+          <InputForm type="password" placeholder='your password!' {...register('password', { 
+            required: true,  
+            minLength: 6,
+            pattern: /^\S*$/,
+            validate: {
+              format: (password) => {
+                return /[A-Z]/g.test(password) && /[a-z]/g.test(password) && /[0-9]/g.test(password);
+              }
+            }
+          })} 
           />
-        <br />
-        <label htmlFor="email">Email</label>
-        <input 
-          type="email" 
-          name="email" 
-          id="email" 
-          onChange={onChange}
-          />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input 
-          type="text" 
-          name="password"
-          id="password" 
-          onChange={onChange}
-          />
-          <button>Enviar</button>
+          { errors.password 
+              ? (<span className={styled.error}>Este campo es requerido!</span>)
+              : null
+          }
+        </label>
+        <button className={styled.formButton}>Create accout</button>
       </form>
-      <br />
+      <span>Do have an account? <Link to={'/login'}>Sign in</Link></span>
     </div>
   )
 }
