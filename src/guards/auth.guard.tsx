@@ -1,6 +1,6 @@
 import { userAppSelector } from "../hooks"
 import { PublicRoutes } from "../models/routes"
-import { selectUserInfo } from "../redux/states/auth/User.state"
+import { selectUserInfo } from "../redux/states/auth/Auth.state"
 import { Outlet, Navigate } from 'react-router-dom'
 
 const AuthGuard = () => {
