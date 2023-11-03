@@ -2,7 +2,7 @@ import './styles/App.css'
 import { Register, Login, Dashboard } from './pages'
 import { BrowserRouter, Route, Navigate } from 'react-router-dom'
 import { PrivateRoutes, PublicRoutes } from './models/routes'
-import { AuthGuard } from './guards'
+// import { AuthGuard } from './guards'
 import RoutesWithNotFound from './utilities/RoutesWithNotFound'
 
 function App() {
@@ -13,9 +13,9 @@ function App() {
           <Route path='/' element={<Navigate to={PrivateRoutes.PRIVATE} />} />
           <Route path={PublicRoutes.LOGIN} element={<Login />} />
           <Route path={PublicRoutes.REGISTER} element={<Register />} />
-          <Route element={<AuthGuard />}>
-            <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Dashboard />} />
-          </Route>
+          <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Dashboard />} />
+          {/* <Route element={<AuthGuard />}>
+          </Route> */}
         </RoutesWithNotFound>
       </BrowserRouter>
     </div>

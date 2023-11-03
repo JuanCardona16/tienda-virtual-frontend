@@ -1,0 +1,8 @@
+.homePage {
+  background-color: var(--color-backgroud);
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+  position: relative;
+}
+
