@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.imageLogo {
+  border-radius: .6rem;
+}
+
+.header_navigation {
+  display: flex;
+  gap: .6rem;
+}
+
+.header__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  margin: 0px 5px 0px;
+}
