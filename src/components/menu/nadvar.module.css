@@ -1,3 +1,25 @@
 .container__nav {
-  background-color: aqua;
+  background-color: rgba(196, 196, 196, 0.689);
+  width: 340px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: .8rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.nav__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  margin: 0px 5px 0px;
 }

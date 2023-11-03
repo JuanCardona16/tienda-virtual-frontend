@@ -3,7 +3,7 @@ import Header from "../../../components/header/Header";
 import Logout from "../components/Logout";
 import { InputForm } from '../../../styled-components/input';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Nadvar from '../../../components/menu/nadvar';
+import Nadvar from '../../../components/menu/Nadvar';
 
 type searchForm = {
   query: string
