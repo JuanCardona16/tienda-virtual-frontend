@@ -32,6 +32,10 @@ Para utilizar este proyecto puedes clonar el repositorio de la siguiente manera:
 - Para levantar el proyecto en modo de desarrollo ejecuta el siguiente comando:
   `pnpm run dev` o `npm run dev`
 
+### NOTA
+
+Este proyecto sigue en fase de desarrollo.
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
