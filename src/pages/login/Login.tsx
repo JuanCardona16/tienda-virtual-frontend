@@ -1,16 +1,19 @@
 import styled from './login.module.css';
+import imagenLogin from '../../assets/365cons-033.svg'
 import { useAppDispatch } from "../../hooks";
 import { singup } from "../../services/auth.service";
 import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { PrivateRoutes } from '../../models/routes';
-import imagenLogin from '../../assets/365cons-033.svg'
 import { InputForm } from '../../styled-components/input';
+import { userAppSelector } from '../../hooks';
+import { selectUserInfo } from '../../redux/states/auth/Auth.state';
 
 type formData = {
   email: string,
   password: string
 }
+
 interface formDataLogin {
   email: string,
   password: string
@@ -20,11 +23,15 @@ const Login = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const userInfo = userAppSelector(selectUserInfo);
+
   const { handleSubmit, register, formState: { errors } } = useForm<formDataLogin>();
 
   const onSubmitForm: SubmitHandler<formData> = (data) => {
     dispatch(singup(data))
-    navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true });
+    if (userInfo.token !== '') {
+      navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true });
+    }  
   }
 
   return (
